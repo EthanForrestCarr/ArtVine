@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_COMPOSITION } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { ADD_COMPOSITION } from '../utils/mutations.js';
+import Auth from '../utils/auth.js';
 
 const CompositionForm: React.FC = () => {
     const [compositionTitle, setCompositionTitle] = useState('');

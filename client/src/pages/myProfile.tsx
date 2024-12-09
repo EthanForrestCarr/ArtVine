@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CompositionForm from '../components/compositionForm';
-import CompositionList from '../components/compositionList';
-import Auth from '../utils/auth';
+import CompositionForm from '../components/compositionForm.jsx';
+import CompositionList from '../components/compositionList.jsx';
+import Auth from '../utils/auth.js';
 
 const MyProfile: React.FC = () => {
     const [showForm, setShowForm] = useState(false);

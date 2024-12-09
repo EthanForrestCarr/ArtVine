@@ -1,5 +1,5 @@
 import React from 'react';
-import CompositionList from '../components/compositionList';
+import CompositionList from '../components/compositionList.jsx';
 import LogoImage from '../assets/ArtVine_transparent.png';
 
 const Home: React.FC = () => {

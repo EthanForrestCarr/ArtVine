@@ -1,7 +1,6 @@
 import db from '../config/connection.js';
 import { Composition, User } from '../models/index.js';
 import cleanDB from './cleanDB.js';
-
 import userData from './userData.json' with { type: 'json'};
 import { seedCompositions } from './createSeed.js';
 

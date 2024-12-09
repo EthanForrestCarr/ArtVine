@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
-import { FOLLOW_USER } from '../utils/mutations';
+import { QUERY_USER, QUERY_ME } from '../utils/queries.js';
+import { FOLLOW_USER } from '../utils/mutations.js';
 
 const ProfilePage: React.FC = () => {
     const { name } = useParams<{ name: string }>();

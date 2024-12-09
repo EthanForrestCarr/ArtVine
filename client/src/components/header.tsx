@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { type MouseEvent } from 'react';
-import Auth from '../utils/auth';
+import Auth from '../utils/auth.js';
 import LogoImage from '../assets/ArtVine_transparent.png';
 
 const Header = () => {

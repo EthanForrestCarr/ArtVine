@@ -1,4 +1,3 @@
-//import './App.css';
 import {
   ApolloClient,
   InMemoryCache,
@@ -7,9 +6,8 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-
-import Header from './components/header';
-import Footer from './components/footer';
+import Header from './components/header.jsx';
+import Footer from './components/footer.jsx';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',

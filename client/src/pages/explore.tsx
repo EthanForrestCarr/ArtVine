@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries';
-import SearchBar from '../components/searchBar';
-import CompositionCard from '../components/compositionCard';
-import CompositionList from '../components/compositionList';
+import { SEARCH_COMPOSITIONS_AND_USERS } from '../utils/queries.js';
+import SearchBar from '../components/searchBar.jsx';
+import CompositionCard from '../components/compositionCard.jsx';
+import CompositionList from '../components/compositionList.jsx';
 
 const ExplorePage = () => {
     const [searchQuery, setSearchQuery] = useState('');

@@ -1,6 +1,6 @@
 import CompositionList from '../components/compositionList';
 import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries.js';
 
 const Library = () => {
     const { loading, error, data } = useQuery(QUERY_ME, {

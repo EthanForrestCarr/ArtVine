@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_COMPOSITIONS, QUERY_ME } from '../utils/queries';
-import Composition from './compositionCard';
+import { QUERY_COMPOSITIONS, QUERY_ME } from '../utils/queries.js';
+import Composition from './compositionCard.jsx';
 
 interface CompositionProps {
     _id: string;
