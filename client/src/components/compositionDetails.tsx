@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_COMPOSITIONS } from '../utils/queries';
 import { SAVE_TO_LIBRARY } from '../utils/mutations';
-import dayjs from 'dayjs';
+/* import dayjs from 'dayjs'; */
 
 
 const CompositionDetails: React.FC = () => {
@@ -40,7 +40,7 @@ const CompositionDetails: React.FC = () => {
     };
 
      // Destructuring composition data from the fetched composition object
-    const { compositionTitle, compositionText, compositionAuthor, createdAt, tags } = fetchedComposition;
+    const { compositionTitle, compositionText, compositionAuthor, /* createdAt, */ tags } = fetchedComposition;
 
     //Handler to save a composition to library
     const handleSaveToLibrary = async () => {
@@ -67,9 +67,9 @@ const CompositionDetails: React.FC = () => {
             <h2 className="title">{compositionTitle}</h2>
             <div className="content">
                 <p>By: {compositionAuthor}</p>
-                <p className="has-text-grey">
+                {/* <p className="has-text-grey">
                     Created on {dayjs(createdAt).format('MMMM D, YYYY')}
-                </p>
+                </p> */}
             </div>
 
             {/* Displays composition content  */}
