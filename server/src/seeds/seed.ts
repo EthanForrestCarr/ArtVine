@@ -1,16 +1,18 @@
 import db from '../config/connection.js';
-import { Thought, User } from '../models/index.js';
+import { Composition, User } from '../models/index.js';
 import cleanDB from './cleanDB.js';
 
-import userData from './userData.json' assert { type: 'json'};
-import thoughtData from './thoughtData.json' assert { type: 'json' };
+import userData from './userData.json' with { type: 'json'};
+import { seedCompositions } from './createSeed.js';
 
 const seedDatabase = async (): Promise<void> => {
   try {
     await db();
     await cleanDB();
 
-    await Thought.insertMany(thoughtData);
+    const data = await seedCompositions()
+
+    await Composition.insertMany(data);
     await User.create(userData);
     console.log('Seeding completed successfully!');
     process.exit(0);

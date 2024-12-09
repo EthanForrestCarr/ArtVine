@@ -1,35 +1,21 @@
 const typeDefs = `
   type User {
     _id: ID
-    username: String
+    name: String
     email: String
     password: String
-    thoughts: [Thought]!
+    compositions: [Composition]!
+    library: [Composition]!
+    follows: [User]!
   }
 
-  type Thought {
+  type Composition {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
+    compositionTitle: String
+    compositionText: String
+    compositionAuthor: String
+    tags: [String]
     createdAt: String
-    comments: [Comment]!
-  }
-
-  type Comment {
-    _id: ID
-    commentText: String
-    createdAt: String
-  }
-
-  input ThoughtInput {
-    thoughtText: String!
-    thoughtAuthor: String!
-  }
-
-  input UserInput {
-    username: String!
-    email: String!
-    password: String!
   }
   
   type Auth {
@@ -37,21 +23,50 @@ const typeDefs = `
     user: User
   }
 
+  type SearchResults {
+    users: [User]
+    compositions: [Composition]
+  }
+
+  input CompositionInput {
+    compositionTitle: String
+    compositionText: String!
+    compositionAuthor: String!
+    tags: [String]
+  }
+
+  input UserInput {
+    name: String!
+    email: String!
+    password: String!
+  }
+
+  input FollowInput {
+    followId: ID!
+  }
+
+  input LibraryInput {
+    compositionId: ID!
+  }
+
   type Query {
     users: [User]
-    user(username: String!): User
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
+    user(name: String!): User
+    compositions: [Composition]!
+    composition(compositionId: ID!): Composition
     me: User
+    searchCompositionsAndUsers(query: String): SearchResults
   }
 
   type Mutation {
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
-    addThought(input: ThoughtInput!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addComposition(input: CompositionInput!): Composition
+    removeComposition(compositionId: ID!): Composition
+    saveToLibrary(compositionId: ID!): User
+    removeFromLibrary(compositionId: ID!): User
+    followUser(input: FollowInput!): User
+    unfollowUser(followId: ID!): User
   }
 `;
 

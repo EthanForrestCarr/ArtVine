@@ -1,17 +1,54 @@
 [
     {
-        "username": "JollyGuru",
-        "email": "jolly@guru.com",
-        "password": "password"
+        "_id": "111111111111111111111111",
+        "name": "Ethan",
+        "email": "ethan@artvine.com",
+        "password": "12345678",
+        "compositions": [],
+        "library": "000000000000000000000010",
+        "follows": [
+            "222222222222222222222222",
+            "333333333333333333333333",
+            "444444444444444444444444",
+            "555555555555555555555555"
+        ]
     },
     {
-        "username": "SunnyScribe",
-        "email": "sunny@scribe.com",
-        "password": "password"
+        "_id": "222222222222222222222222",
+        "name": "Chris",
+        "email": "chris@artvine.com",
+        "password": "12345678",
+        "compositions": [],
+        "library": "000000000000000000000010"
     },
     {
-        "username": "RadiantComet",
-        "email": "radiant@comet.com",
-        "password": "password"
+        "_id": "333333333333333333333333",
+        "name": "Brad",
+        "email": "brad@artvine.com",
+        "password": "12345678",
+        "compositions": [
+            "000000000000000000000001",
+            "000000000000000000000002",
+            "000000000000000000000003",
+            "000000000000000000000004",
+            "000000000000000000000005",
+            "000000000000000000000006",
+            "000000000000000000000007",
+            "000000000000000000000008"
+        ]
+    },
+    {
+        "_id": "444444444444444444444444",
+        "name": "Yahye",
+        "email": "yahye@artvine.com",
+        "password": "12345678",
+        "compositions": []
+    },
+    {
+        "_id": "555555555555555555555555",
+        "name": "Dimintri",
+        "email": "dimintri@artvine.com",
+        "password": "12345678",
+        "compositions": []
     }
 ]
