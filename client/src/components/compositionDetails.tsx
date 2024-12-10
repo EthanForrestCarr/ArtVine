@@ -67,7 +67,7 @@ const CompositionDetails: React.FC = () => {
             <div className="content">
                 <p>By: {compositionAuthor}</p>
                 <p className="has-text-grey">
-                    Created on {createdAt}
+                    Created on {/* {createdAt} */}
                 </p>
             </div>
 

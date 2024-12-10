@@ -6,7 +6,6 @@ import { useAuth } from "../utils/auth"; // Custom hook to get user info
 import { CHECK_LIBRARY_STATUS } from "../utils/queries"; // Query to check if composition is in the library
 
 interface CompositionProps {
-    _id: string;
     compositionId: string;
     compositionTitle: string;
     compositionText: string;
@@ -16,7 +15,6 @@ interface CompositionProps {
 }
 
 const CompositionCard: React.FC<CompositionProps> = ({
-    _id,
     compositionId,
     compositionTitle,
     compositionText,
@@ -139,8 +137,8 @@ const CompositionCard: React.FC<CompositionProps> = ({
                     </Link>
                     {user && (
                         <>
-                            {console.log(user.compositions, _id)}
-                            { user?.compositions?.includes(_id) ? (
+                            {console.log(user.compositions, compositionId)}
+                            { user?.compositions?.includes(compositionId) ? (
                             
                                 <button
                                     onClick={handleEditClick}

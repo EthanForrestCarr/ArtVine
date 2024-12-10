@@ -5,7 +5,7 @@ import Auth from '../utils/auth.js';
 
 const MyProfile: React.FC = () => {
     const [showForm, setShowForm] = useState(false);
-    const userEmail = Auth.loggedIn() ? Auth.getProfile().data.email : '';
+    const userEmail = Auth.loggedIn() ? Auth.getProfile()?.data.email : '';
 
     const toggleForm = () => {
         setShowForm((prev) => !prev);
