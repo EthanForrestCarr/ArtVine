@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom';
 import './AboutArtVine.css';
 import LogoImage from '../assets/ArtVine_transparent.png';
 
@@ -103,3 +103,4 @@ const AboutUs = () => {
 }
 
 export default AboutUs;
+ */
