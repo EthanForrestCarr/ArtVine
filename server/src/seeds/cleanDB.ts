@@ -4,11 +4,11 @@ import process from 'process';
 const cleanDB = async (): Promise<void> => {
   try {
     // Delete documents from Composition Library
-    await Composition.deleteMany({});
+    await Composition.collection.drop();
     console.log('Composition library cleaned.');
 
     // Delete documents from User library
-    await User.deleteMany({});
+    await User.collection.drop();
     console.log('User library cleaned.');
 
   } catch (err) {
