@@ -88,7 +88,22 @@ const resolvers = {
 
       return { users, compositions };
     },
-
+    checkLibraryStatus: async (_: any, { compositionId }: { compositionId: string }, { user }: any) => {
+      if (!user) {
+        throw new AuthenticationError('You need to be logged in!');
+      }
+    
+      // Query the User model directly to check if the compositionId is in the library
+      const userData = await User.findById(user._id).populate('library');
+      if (!userData) {
+        throw new AuthenticationError('User not found.');
+      }
+    
+      // Check if the composition is in the user's library
+      const isInLibrary = userData.library.some((composition: any) => composition._id.toString() === compositionId);
+      return { inLibrary: isInLibrary };
+    }
+    
 
   },
   Mutation: {

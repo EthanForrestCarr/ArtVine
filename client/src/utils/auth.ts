@@ -1,61 +1,93 @@
-import { type JwtPayload, jwtDecode } from 'jwt-decode';
+import { useState, useEffect } from "react";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 
-// Extending the JwtPayload interface to include additional data fields specific to the application.
+// Extended JwtPayload interface to include application-specific fields
 interface ExtendedJwt extends JwtPayload {
-  data:{
-    email:string,
-    id:string
-  }
-};
+  data: {
+    email: string;
+    id: string; // User's unique ID
+  };
+}
 
 class AuthService {
-  // This method decodes the JWT token to get the user's profile information.
-  getProfile() {
-    // jwtDecode is used to decode the JWT token and return its payload.
-    return jwtDecode<ExtendedJwt>(this.getToken());
+  // Decode the JWT token to get the user's profile information
+  getProfile(): ExtendedJwt | null {
+    try {
+      const token = this.getToken();
+      return token ? jwtDecode<ExtendedJwt>(token) : null;
+    } catch (err) {
+      console.error("Error decoding token:", err);
+      return null;
+    }
   }
 
-  // This method checks if the user is logged in by verifying the presence and validity of the token.
-  loggedIn() {
+  // Check if the user is logged in by verifying the token's presence and validity
+  loggedIn(): boolean {
     const token = this.getToken();
-    // Returns true if the token exists and is not expired.
     return !!token && !this.isTokenExpired(token);
   }
 
-  // This method checks if the provided token is expired.
-  isTokenExpired(token: string) {
+  // Check if the token is expired
+  isTokenExpired(token: string): boolean {
     try {
-      // jwtDecode decodes the token to check its expiration date.
       const decoded = jwtDecode<JwtPayload>(token);
-
-      // Returns true if the token has expired, false otherwise.
-      if (decoded?.exp && decoded?.exp < Date.now() / 1000) {
-        return true;
-      }
+      return !!(decoded?.exp && decoded.exp < Date.now() / 1000);
     } catch (err) {
-      // If decoding fails, assume the token is not expired.
+      console.error("Error checking token expiration:", err);
       return false;
     }
   }
 
-  // This method retrieves the token from localStorage.
+  // Retrieve the token from localStorage
   getToken(): string {
-    const loggedUser = localStorage.getItem('id_token') || '';
-    // Returns the token stored in localStorage.
-    return loggedUser;
+    return localStorage.getItem("id_token") || "";
   }
 
-  // This method logs in the user by storing the token in localStorage and redirecting to the home page.
+  // Store the token in localStorage and redirect to the home page
   login(idToken: string) {
-    localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
+    localStorage.setItem("id_token", idToken);
+    window.location.assign("/");
   }
 
-  // This method logs out the user by removing the token from localStorage and redirecting to the home page.
+  // Remove the token from localStorage and redirect to the home page
   logout() {
-    localStorage.removeItem('id_token');
-    window.location.assign('/');
+    localStorage.removeItem("id_token");
+    window.location.assign("/");
   }
 }
 
-export default new AuthService();
+const authService = new AuthService();
+
+// Custom React hook for accessing authentication-related functionality
+export const useAuth = () => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(authService.loggedIn());
+  const [profile, setProfile] = useState<ExtendedJwt | null>(null);
+
+  useEffect(() => {
+    if (loggedIn) {
+      const userProfile = authService.getProfile();
+      setProfile(userProfile);
+    } else {
+      setProfile(null);
+    }
+  }, [loggedIn]);
+
+  const login = (idToken: string) => {
+    authService.login(idToken);
+    setLoggedIn(true);
+  };
+
+  const logout = () => {
+    authService.logout();
+    setLoggedIn(false);
+  };
+
+  return {
+    loggedIn,
+    profile,
+    login,
+    logout,
+  };
+};
+
+export default authService;

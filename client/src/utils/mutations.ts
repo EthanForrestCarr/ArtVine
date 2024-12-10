@@ -41,6 +41,19 @@ export const ADD_COMPOSITION = gql`
   }
 `;
 
+export const REMOVE_COMPOSITION = gql`
+  mutation removeComposition($compositionId: ID!) {
+    removeComposition(compositionId: $compositionId) {
+      _id
+      compositionTitle
+      compositionText
+      compositionAuthor
+      createdAt
+      tags
+    }
+  }
+`;
+
 export const SAVE_TO_LIBRARY = gql`
   mutation saveToLibrary($compositionId: ID!) {
     saveToLibrary(compositionId: $compositionId) {
@@ -58,12 +71,20 @@ export const SAVE_TO_LIBRARY = gql`
 `;
 
 export const REMOVE_FROM_LIBRARY = gql`
-    mutation removeFromLibrary($compositionId: ID!) {
+  mutation removeFromLibrary($compositionId: ID!) {
     removeFromLibrary(compositionId: $compositionId) {
       _id
+      library {
+        _id
+        compositionTitle
+        compositionText
+        compositionAuthor
+        createdAt
+        tags
+      }
     }
   }
-`
+`;
 
 // export const ADD_COMMENT = gql`
 //   mutation addComment($thoughtId: ID!, $commentText: String!) {

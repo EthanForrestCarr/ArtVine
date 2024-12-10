@@ -49,6 +49,10 @@ const typeDefs = `
     compositionId: ID!
   }
 
+  type LibraryStatus {
+    inLibrary: Boolean
+  }
+
   type Query {
     users: [User]
     user(name: String!): User
@@ -56,6 +60,7 @@ const typeDefs = `
     composition(compositionId: ID!): Composition
     me: User
     searchCompositionsAndUsers(query: String): SearchResults
+    checkLibraryStatus(compositionId: ID!): LibraryStatus
   }
 
   type Mutation {

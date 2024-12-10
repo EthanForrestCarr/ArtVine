@@ -100,15 +100,16 @@ const ExplorePage = () => {
                                         compositionAuthor: string;
                                         tags: string[];
                                     }) => (
-                                        <CompositionCard
-                                            key={composition._id}
-                                            compositionId={composition._id}
-                                            compositionTitle={composition.compositionTitle}
-                                            compositionText={composition.compositionText}
-                                            compositionAuthor={composition.compositionAuthor}
-                                            createdAt={composition.createdAt}
-                                            tags={composition.tags}
-                                        />
+                                            <CompositionCard
+                                                key={composition._id}
+                                                _id={composition._id}
+                                                compositionId={composition._id}
+                                                compositionTitle={composition.compositionTitle}
+                                                compositionText={composition.compositionText}
+                                                compositionAuthor={composition.compositionAuthor}
+                                                createdAt={composition.createdAt}
+                                                tags={composition.tags}
+                                            />
                                     )
                                 )
                             ) : (
