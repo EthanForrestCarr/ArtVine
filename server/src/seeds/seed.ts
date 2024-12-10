@@ -12,7 +12,11 @@ const seedDatabase = async (): Promise<void> => {
     const data = await seedCompositions()
 
     await Composition.insertMany(data);
-    await User.create(userData);
+    for (let user of userData) {
+      const userSeed = new User(user);
+
+      await userSeed.save()
+  }
     console.log('Seeding completed successfully!');
     process.exit(0);
   } catch (error) {
