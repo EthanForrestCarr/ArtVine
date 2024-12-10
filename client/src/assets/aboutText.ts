@@ -1,0 +1,1 @@
+export const aboutText = `ArtVine is a collaborative project by some dudes.`

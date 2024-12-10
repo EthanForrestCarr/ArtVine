@@ -6,8 +6,12 @@ import Auth from '../utils/auth.js';
 const CompositionForm: React.FC = () => {
     const [compositionTitle, setCompositionTitle] = useState('');
     const [compositionText, setCompositionText] = useState('');
+    const [compositionAuthor, setCompositionAuthor] = useState('');
     const [tags, setTags] = useState('');
     const [addComposition] = useMutation(ADD_COMPOSITION);
+
+    const [helperTextStyle, setHelperTextStyle] = useState('help is-hidden');
+    const [helperText, setHelperText] = useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -23,56 +27,84 @@ const CompositionForm: React.FC = () => {
         const tagsArray = tags.split(',').map((tag) => tag.trim()).filter((tag) => tag);
 
         try {
+            setHelperText('Submitting...');
+            setHelperTextStyle('help is-warning');
             await addComposition({
                 variables: {
                     input: {
                         compositionTitle,
                         compositionText,
-                        compositionAuthor: Auth.getProfile().data.email,
+                        compositionAuthor,
                         tags: tagsArray,
                     },
                 },
             });
             setCompositionTitle('');
             setCompositionText('');
+            setCompositionAuthor('');
             setTags('');
-            alert('Poem added successfully!');
-            
+            setHelperText('You poem has been added successfully!')
+            setHelperTextStyle('help is-success');
+            // alert('Poem added successfully!');
+
         } catch (err) {
             console.error(err);
-            alert('An error occurred while submitting your poem.');
+            // alert('An error occurred while submitting your poem.');
+            setHelperText('An error occured while submitting your poem.');
+            setHelperTextStyle('help is-danger');
         }
     };
 
     return (
+        <div className = "submit-form">
         <form onSubmit={handleSubmit}>
-            <label>
-                Title:
+            <div className="field">
+                <label className="label">Title:</label>
                 <input
+                    className="input"
                     type="text"
                     value={compositionTitle}
                     onChange={(e) => setCompositionTitle(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Poem:
+            </div>
+            <div className="field">
+                <label className="label">Author:</label>
+                <input
+                    className="input"
+                    type="text"
+                    value={compositionAuthor}
+                    onChange={(e) => setCompositionAuthor(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="field">
+            <label className="label">Poem:</label>
                 <textarea
+                    className="textarea textarea-input"
+                    wrap="off"
+                    rows={10}
                     value={compositionText}
                     onChange={(e) => setCompositionText(e.target.value)}
                     required
                 ></textarea>
-            </label>
-            <label>
-                Tags (separate with commas):
+            </div>
+            <div className="field">
+            <label className="label">Tags (separate with commas):
                 <textarea
+                    className="input"
                     value={tags}
                     onChange={(e) => setTags(e.target.value)}
                     required
                 ></textarea>
             </label>
-            <button type="submit">Submit Poem</button>
+            </div>
+            <button className="button is-primary mb-2" type="submit">Submit Poem</button>
+            <p className={helperTextStyle}>
+                {helperText}
+            </p>
         </form>
+        </div>
     );
 };
 

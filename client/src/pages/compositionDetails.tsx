@@ -39,7 +39,7 @@ const CompositionDetails: React.FC = () => {
     };
 
      // Destructuring composition data from the fetched composition object
-    const { compositionTitle, compositionText, compositionAuthor, /* createdAt, */ tags } = fetchedComposition;
+    const { compositionTitle, compositionText, compositionAuthor, createdAt, tags } = fetchedComposition;
 
     //Handler to save a composition to library
     const handleSaveToLibrary = async () => {

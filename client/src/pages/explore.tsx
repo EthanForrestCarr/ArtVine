@@ -64,16 +64,18 @@ const ExplorePage = () => {
 
 
     return (
-        <div className="mt-3">
-            <div className="hero is-small">
-                <p className="title has-text-primary">Explore</p>
-                <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
-                <SearchBar onSearch={onSearch} />
+        <>
+            <div className="hero is-small has-background-primary-dark">
+                <div className="hero-body">
+                    <p className="title has-text-primary">Explore</p>
+                    <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
+                    <SearchBar onSearch={onSearch} />
+                </div>
             </div>
 
             {displaySearchResults ? (
                 <div>
-                    <div className="block">
+                    {/* <div className="block">
                         <p className="title is-4">Users:</p>
                         {data?.searchCompositionsAndUsers?.users?.length > 0 ? (
                             data.searchCompositionsAndUsers.users.map((user: { _id: string; name: string; email: string }) => (
@@ -84,7 +86,7 @@ const ExplorePage = () => {
                         ) : (
                             <p className="tag is-warning">No users found.</p>
                         )}
-                    </div>
+                    </div> */}
                     <div className="block">
                         <p className="title is-4">Compositions:</p>
                         <div className="composition-grid grid is-col-min-16">
@@ -98,15 +100,15 @@ const ExplorePage = () => {
                                         compositionAuthor: string;
                                         tags: string[];
                                     }) => (
-                                            <CompositionCard
-                                                key={composition._id}
-                                                compositionTitle={composition.compositionTitle}
-                                                compositionText={composition.compositionText}
-                                                compositionAuthor={composition.compositionAuthor}
-                                                compositionId={composition._id}
-                                                createdAt={composition.createdAt}
-                                                tags={composition.tags}
-                                            />
+                                        <CompositionCard
+                                            key={composition._id}
+                                            compositionId={composition._id}
+                                            compositionTitle={composition.compositionTitle}
+                                            compositionText={composition.compositionText}
+                                            compositionAuthor={composition.compositionAuthor}
+                                            createdAt={composition.createdAt}
+                                            tags={composition.tags}
+                                        />
                                     )
                                 )
                             ) : (
@@ -125,7 +127,7 @@ const ExplorePage = () => {
             <p className="mt-2">
                 Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
             </p>
-        </div>
+        </>
     );
 };
 

@@ -15,11 +15,11 @@ const Library = () => {
 
     return (
         <div>
-            <h1>Your Library</h1>
+            <p className="title is-4">Your Library</p>
             {savedCompositions.length > 0 ? (
                 <CompositionList filterBySaved={true} />
             ) : (
-                <p>Your library is empty. Start collecting your favorite compositions!</p>
+                <p className="subtitle">Your library is empty. Start collecting your favorite compositions!</p>
             )}
         </div>
     );
