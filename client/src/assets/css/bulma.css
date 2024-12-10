@@ -71,9 +71,9 @@
   --bulma-speed: 86ms;
   --bulma-arrow-color: var(--bulma-link);
   --bulma-loading-color: var(--bulma-border);
-  --bulma-burger-h: var(--bulma-link-h);
-  --bulma-burger-s: var(--bulma-link-s);
-  --bulma-burger-l: var(--bulma-link-l);
+  --bulma-burger-h: var(--bulma-primary-h);
+  --bulma-burger-s: var(--bulma-primary-s);
+  --bulma-burger-l: var(--bulma-primary-l);
   --bulma-burger-border-radius: 0.5em;
   --bulma-burger-gap: 5px;
   --bulma-burger-item-height: 2px;
@@ -972,9 +972,9 @@
     --bulma-speed: 86ms;
     --bulma-arrow-color: var(--bulma-link);
     --bulma-loading-color: var(--bulma-border);
-    --bulma-burger-h: var(--bulma-link-h);
-    --bulma-burger-s: var(--bulma-link-s);
-    --bulma-burger-l: var(--bulma-link-l);
+    --bulma-burger-h: var(--bulma-primary-h);
+    --bulma-burger-s: var(--bulma-primary-s);
+    --bulma-burger-l: var(--bulma-primary-l);
     --bulma-burger-border-radius: 0.5em;
     --bulma-burger-gap: 5px;
     --bulma-burger-item-height: 2px;
@@ -1890,9 +1890,9 @@
   --bulma-speed: 86ms;
   --bulma-arrow-color: var(--bulma-link);
   --bulma-loading-color: var(--bulma-border);
-  --bulma-burger-h: var(--bulma-link-h);
-  --bulma-burger-s: var(--bulma-link-s);
-  --bulma-burger-l: var(--bulma-link-l);
+  --bulma-burger-h: var(--bulma-primary-h);
+  --bulma-burger-s: var(--bulma-primary-s);
+  --bulma-burger-l: var(--bulma-primary-l);
   --bulma-burger-border-radius: 0.5em;
   --bulma-burger-gap: 5px;
   --bulma-burger-item-height: 2px;
@@ -7171,7 +7171,8 @@ button.dropdown-item.is-selected {
   --bulma-navbar-item-selected-background-l: var(--bulma-link-l);
   --bulma-navbar-item-selected-color-l: var(--bulma-link-invert-l);
   --bulma-navbar-item-img-max-height: 1.75rem;
-  --bulma-navbar-burger-color: var(--bulma-link);
+  /* HAMBURGER */
+  --bulma-navbar-burger-color: hsl(var(--bulma-primary-h) var(--bulma-primary-s) var(--bulma-primary-l));
   --bulma-navbar-tab-hover-background-color: transparent;
   --bulma-navbar-tab-hover-border-bottom-color: var(--bulma-link);
   --bulma-navbar-tab-active-color: var(--bulma-link);

@@ -4,6 +4,7 @@ dotenv.config();
 import mongoose from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI || '';
+//const MONGODB_URI = 'mongodb://127.0.0.1:27017/ArtVine';
 
 const db = async (): Promise<typeof mongoose.connection> => {
   try {

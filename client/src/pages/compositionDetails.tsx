@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_COMPOSITIONS } from '../utils/queries';
+import { QUERY_SINGLE_COMPOSITION } from '../utils/queries';
 import { SAVE_TO_LIBRARY } from '../utils/mutations';
 
 
@@ -9,12 +9,12 @@ const CompositionDetails: React.FC = () => {
     const navigate = useNavigate(); //Used to navigate between pages
     const { compositionId } = useParams<{ compositionId: string }>(); // Retrieve the composition ID from the URL
 
-    //State for search term
-    const [searchTerm, setSearchTerm] = useState<string>('');
+    // State for search term
+    // const [searchTerm, setSearchTerm] = useState<string>('');
 
     // Fetch the composition data using the QUERY_COMPOSITION query
-    const { loading, error, data } = useQuery(QUERY_COMPOSITIONS, {
-        variables: { id: compositionId, search: searchTerm },
+    const { loading, error, data } = useQuery(QUERY_SINGLE_COMPOSITION, {
+        variables: { compositionId },
     });
 
 
@@ -24,18 +24,23 @@ const CompositionDetails: React.FC = () => {
             console.log('Composition saved to library:', data);
             alert('Composition added to your library!');
         },
+        onError: (err) => {
+            console.error('Error saving to library:', err);
+        },
     });
 
     //Handle the loading and error states
     if (loading) return <p className="loading-spinner">Loading composition details...</p>;
-    if (error) return <p>Oops! Something went wrong while loading the composition. Please try again later.</p>;
-
+    if (error) {
+        console.error('Error fetching composition:', error);
+        return <p>Oops! Something went wrong while loading the composition. Please try again later.</p>;
+    }
     // Extract the fetched composition data
     const fetchedComposition = data?.composition;
 
     // If no composition is found, show an error message
     if (!fetchedComposition) {
-        return <p>Composition not found.</p>;
+        return <p>Composition not found. Please check the composition ID and try again later.</p>;
     };
 
      // Destructuring composition data from the fetched composition object
@@ -51,9 +56,9 @@ const CompositionDetails: React.FC = () => {
     };
 
     //Handler to handle filtering logic by tag
-    const handleTagClick = (tag: string) => {
-        setSearchTerm(tag); // Update the search term based on the tag clicked
-    };
+    // const handleTagClick = (tag: string) => {
+    //     setSearchTerm(tag); // Update the search term based on the tag clicked
+    // };
 
     // Handle the back button functionality
     const handleBackButton = () => {
@@ -61,7 +66,7 @@ const CompositionDetails: React.FC = () => {
     };
 
     return (
-        
+
         <div className="composition-detail">
             <h2 className="title">{compositionTitle}</h2>
             <div className="content">
@@ -78,19 +83,23 @@ const CompositionDetails: React.FC = () => {
 
             {/* Tags Section */}
             <div className="tags">
-                {tags.map((tag: string, index: number) => (
-                    <span
-                        key={index}
-                        className="tag is-primary is-light"
-                        style={{ margin: '0 5px', cursor: 'pointer' }}
-                        onClick={() => handleTagClick(tag)}
-                    >
-                        #{tag}
-                    </span>
-                ))}
+                {tags?.length > 0 ? (
+                    tags.map((tag: string, index: number) => (
+                        <span
+                            key={index}
+                            className="tag is-primary is-light"
+                            style={{ margin: '0 5px', cursor: 'pointer' }}
+                            //onClick={() => handleTagClick(tag)}
+                        >
+                            #{tag}
+                        </span>
+                    ))
+                ) : (
+                    <p>No tags available</p>
+                )}
             </div>
 
-            {/* Filtered Compositions based on the search term */}
+            {/* Filtered Compositions based on the search term 
             <div className="filtered-compositions">
                 {data?.compositions
                 .filter((composition: any) => 
@@ -104,7 +113,7 @@ const CompositionDetails: React.FC = () => {
                         <p>{filteredComposition.compositionText}</p>
                     </div>
                     ))}
-            </div>
+            </div> */}
 
             {/* Buttons for saving and navigation */}
             <div className="buttons mt-4">
