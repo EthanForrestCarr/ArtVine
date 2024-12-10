@@ -1,13 +1,7 @@
-/* import { useNavigate } from 'react-router-dom';
 import './AboutArtVine.css';
 import LogoImage from '../assets/ArtVine_transparent.png';
 
 const AboutUs = () => {
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   return (
     <>
@@ -92,15 +86,8 @@ const AboutUs = () => {
           <a href="https://github.com/yahye-mohamed101" className="contact-link">Yahye Mohamed</a>
         </div>
       </div>
-
-
-
-      <footer className="footer">
-        <p>&copy; 2024 ArtVine. All Rights Reserved.</p>
-      </footer>
     </>
   );
 }
 
 export default AboutUs;
- */
