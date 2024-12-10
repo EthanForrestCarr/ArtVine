@@ -10,6 +10,9 @@ const CompositionForm: React.FC = () => {
     const [tags, setTags] = useState('');
     const [addComposition] = useMutation(ADD_COMPOSITION);
 
+    const [helperTextStyle, setHelperTextStyle] = useState('help is-hidden');
+    const [helperText, setHelperText] = useState('');
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         if (!Auth.loggedIn()) {
@@ -24,6 +27,8 @@ const CompositionForm: React.FC = () => {
         const tagsArray = tags.split(',').map((tag) => tag.trim()).filter((tag) => tag);
 
         try {
+            setHelperText('Submitting...');
+            setHelperTextStyle('help is-warning');
             await addComposition({
                 variables: {
                     input: {
@@ -38,15 +43,20 @@ const CompositionForm: React.FC = () => {
             setCompositionText('');
             setCompositionAuthor('');
             setTags('');
-            alert('Poem added successfully!');
+            setHelperText('You poem has been added successfully!')
+            setHelperTextStyle('help is-success');
+            // alert('Poem added successfully!');
 
         } catch (err) {
             console.error(err);
-            alert('An error occurred while submitting your poem.');
+            // alert('An error occurred while submitting your poem.');
+            setHelperText('An error occured while submitting your poem.');
+            setHelperTextStyle('help is-danger');
         }
     };
 
     return (
+        <div className = "submit-form">
         <form onSubmit={handleSubmit}>
             <div className="field">
                 <label className="label">Title:</label>
@@ -90,7 +100,11 @@ const CompositionForm: React.FC = () => {
             </label>
             </div>
             <button className="button is-primary mb-2" type="submit">Submit Poem</button>
+            <p className={helperTextStyle}>
+                {helperText}
+            </p>
         </form>
+        </div>
     );
 };
 

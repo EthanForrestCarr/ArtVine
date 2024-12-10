@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_COMPOSITIONS } from '../utils/queries';
 import { SAVE_TO_LIBRARY } from '../utils/mutations';
-import dayjs from 'dayjs';
 
 
 const CompositionDetails: React.FC = () => {
@@ -68,7 +67,7 @@ const CompositionDetails: React.FC = () => {
             <div className="content">
                 <p>By: {compositionAuthor}</p>
                 <p className="has-text-grey">
-                    Created on {dayjs(createdAt).format('MMMM D, YYYY')}
+                    Created on {createdAt}
                 </p>
             </div>
 

@@ -64,11 +64,13 @@ const ExplorePage = () => {
 
 
     return (
-        <div className="mt-3">
-            <div className="hero is-small">
-                <p className="title has-text-primary">Explore</p>
-                <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
-                <SearchBar onSearch={onSearch} />
+        <>
+            <div className="hero is-small has-background-primary-dark">
+                <div className="hero-body">
+                    <p className="title has-text-primary">Explore</p>
+                    <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
+                    <SearchBar onSearch={onSearch} />
+                </div>
             </div>
 
             {displaySearchResults ? (
@@ -98,15 +100,15 @@ const ExplorePage = () => {
                                         compositionAuthor: string;
                                         tags: string[];
                                     }) => (
-                                            <CompositionCard
-                                                key={composition._id}
-                                                compositionId={composition._id}
-                                                compositionTitle={composition.compositionTitle}
-                                                compositionText={composition.compositionText}
-                                                compositionAuthor={composition.compositionAuthor}
-                                                createdAt={composition.createdAt}
-                                                tags={composition.tags}
-                                            />
+                                        <CompositionCard
+                                            key={composition._id}
+                                            compositionId={composition._id}
+                                            compositionTitle={composition.compositionTitle}
+                                            compositionText={composition.compositionText}
+                                            compositionAuthor={composition.compositionAuthor}
+                                            createdAt={composition.createdAt}
+                                            tags={composition.tags}
+                                        />
                                     )
                                 )
                             ) : (
@@ -125,7 +127,7 @@ const ExplorePage = () => {
             <p className="mt-2">
                 Use the left (<kbd>←</kbd>) and right (<kbd>→</kbd>) arrow keys to navigate through poems.
             </p>
-        </div>
+        </>
     );
 };
 

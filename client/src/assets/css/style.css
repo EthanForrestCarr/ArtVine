@@ -41,11 +41,15 @@
     border-color: hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-lightest));
 }
 
-.dropdown-menu {
-    z-index: 2;
-    border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
-    box-shadow: none;
-    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest));
+.dropdown-content {
+    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
+    max-width: auto;
+    border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l))
+}
+
+.dropdown-item:hover {
+    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l));
+    color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest))
 }
 
 #dropdown-button {
@@ -98,13 +102,13 @@
 
 .navbar {
     border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
-    border-width: 0 0 1px 0;
+    border-width: 0 0 3px 0;
     background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest));
 }
 
 .footer {
     border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
-    border-width: 1px 0 0 0;
+    border-width: 3px 0 0 0;
 }
 
 .card-footer-item {
@@ -113,4 +117,11 @@
 
 .card-footer-item:hover {
     color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-lightest));
+}
+
+.submit-form {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border: solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
+    border-width: 0 0 3px 0;
 }
