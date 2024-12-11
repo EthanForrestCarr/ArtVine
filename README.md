@@ -63,6 +63,7 @@ npm run start:dev
 Or check out the [deployed application](https://artvine.onrender.com) on Render.
 
 - Artists can create accounts, upload artwork, and manage their portfolios.
+![Signup page screenshot](client/src/assets/screenshots/signup.png)
 
 ## Future Development
 1. More Art
