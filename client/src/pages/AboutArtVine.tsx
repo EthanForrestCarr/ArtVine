@@ -35,7 +35,7 @@ const AboutArtVine = () => {
           </div>
           <div className="box column">
             <h2 className="title is-5">Explore the Collection</h2>
-            <p>Browse through a rich collection of poems from emerging and established poets, offering unique voices and perspectives.</p>
+            <p>Browse through a rich collection of poems from emerging and established poets, offering unique voices and perspectives. You can even add them to a personalized Library.</p>
           </div>
           <div className="box column">
             <h2 className="title is-5">Collaborate Creatively</h2>
@@ -59,7 +59,7 @@ const AboutArtVine = () => {
         </section>
       </div>
 
-      <h3 className="collaboration-title">Collaboration Members</h3>
+      <h3 className="collaboration-title">Development Team</h3>
       <div className="collaboration">
 
         <div className="collaboration-member">
