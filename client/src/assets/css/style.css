@@ -103,7 +103,7 @@
 .navbar {
     border: 1px solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
     border-width: 0 0 3px 0;
-    background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest));
+    /* background-color: hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darkest)); */
 }
 
 .footer {
@@ -124,4 +124,12 @@
     margin-bottom: 1rem;
     border: solid hsl(var(--av-primary-h), var(--av-primary-s), var(--av-primary-l-darker));
     border-width: 0 0 3px 0;
+}
+
+.details-text {
+    background-color: hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-darker));
+    padding: 30px 30px 30px 30px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid hsl(var(--av-secondary-h), var(--av-secondary-s), var(--av-secondary-l-lighter));
+    border-radius: 8px;
 }

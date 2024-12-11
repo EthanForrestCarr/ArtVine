@@ -77,9 +77,6 @@ const CompositionCard: React.FC<CompositionProps> = ({
         navigate(`/explore?search=${encodeURIComponent(tag)}`);
     };
 
-
-
-
     return (
         <div className="cell">
             <div className="card">
@@ -123,9 +120,9 @@ const CompositionCard: React.FC<CompositionProps> = ({
                             className="card-textarea textarea has-fixed-size"
                             style={{ minHeight: "100%" }}
                             readOnly
-                        >
-                            {compositionText}
-                        </textarea>
+                            value={compositionText}
+                        />
+
                     </div>
                 </div>
                 <footer className="card-footer has-background-primary-30">
@@ -135,31 +132,6 @@ const CompositionCard: React.FC<CompositionProps> = ({
                     >
                         View Composition
                     </Link>
-                    {/* {user && (
-                        <>
-                            { false ? (
-                            
-                                <button
-                                    onClick={handleEditClick}
-                                    className="card-footer-item"
-                                >
-                                    Edit Composition
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={handleLibraryAction}
-                                    className="card-footer-item"
-                                    disabled={libraryLoading}
-                                >
-                                    {libraryLoading
-                                        ? "Loading..."
-                                        : inLibrary
-                                        ? "Remove from Library"
-                                        : "Add to Library"}
-                                </button>
-                            )}
-                        </>
-                    )} */}
                     <button
                         onClick={handleLibraryAction}
                         className="card-footer-item"

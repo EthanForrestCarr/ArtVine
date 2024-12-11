@@ -2,18 +2,20 @@
 
 [![License Badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-ArtVine is a platform designed to connect artists with art enthusiasts. It enables artists to showcase their portfolios, sell their artwork, and build a following. Buyers can browse collections, save to their own library, and purchase directly through the platform, fostering a community that supports creative talent.
+ArtVine is a platform designed to connect artists with art enthusiasts. It enables artists to showcase their portfolios and build a following. Users can browse collections and save to their own library, fostering a community that supports creative talent.
 
 ## Description
-ArtVine bridges the gap between artists and buyers by providing an intuitive platform for:
+ArtVine bridges the gap between artists and enthusiasts by providing an intuitive platform for:
 - Showcasing and managing artist portfolios.
-- Buying and selling artwork securely.
-- Engaging with a community of art enthusiasts through social features like comments, likes, and follows.  
+- Engaging with a community of art enthusiasts through a personal library.  
 The platform is designed with scalability in mind and provides an optimized user experience on both desktop and mobile devices.
 
 ## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Future Developement](#future-development)
 - [Contributing](#contributing)
 - [License](#license)
 - [Tests](#tests)
@@ -23,16 +25,11 @@ The platform is designed with scalability in mind and provides an optimized user
 1. Artist Portfolios
 - Upload and manage artwork galleries.
 - Add descriptions and tags to pieces for better discoverability.
-2. Art Marketplace
-- Secure transactions for purchasing artwork.
-- Wishlist feature for saving favorite pieces.
-3. Social Features
-- Follow favorite artists and receive updates.
-- Comment and like artworks to engage with the community.
-4. Admin Dashboard
-- Verify artist profiles.
-- Monitor and manage flagged content.
-5. Responsive Design
+2. Library
+- See something cool? Put it your library so you always know where to find it.
+3. Explore
+- Search the database by author, tag, or user.
+4. Responsive Design
 - Mobile-friendly and accessible UI for all users.
 
 ## Technologies Used
@@ -63,10 +60,22 @@ After installation, run the development servers:
 npm run start:dev
 ```
 
-Or check out the [deployed application]() on Render.
+Or check out the [deployed application](https://artvine.onrender.com) on Render.
 
 - Artists can create accounts, upload artwork, and manage their portfolios.
-- Buyers can browse artwork, follow artists, and make purchases.
+
+## Future Development
+1. More Art
+- Visual art mediums coming soon!
+2. Art Marketplace
+- Secure transactions for purchasing artwork.
+- Wishlist feature for saving favorite pieces.
+3. Social Features
+- Follow favorite artists and receive updates.
+- Comment and like artworks to engage with the community.
+4. Admin Dashboard
+- Verify artist profiles.
+- Monitor and manage flagged content.
 
 ## Contributing
 [cgroth06](https://github.com/cgroth06)

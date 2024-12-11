@@ -66,7 +66,7 @@ const ExplorePage = () => {
     return (
         <>
             <div className="hero is-small has-background-primary-dark">
-                <div className="hero-body">
+                <div className="hero-body is-flex-direction-column">
                     <p className="title has-text-primary">Explore</p>
                     <p className="subtitle">Here you can explore all the work that has been submitted to ArtVine.</p>
                     <SearchBar onSearch={onSearch} />

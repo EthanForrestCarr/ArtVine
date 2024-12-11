@@ -1,5 +1,6 @@
 import { Composition, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js';
+import mongoose from 'mongoose';
 
 // Define types for the arguments
 interface AddUserArgs {
@@ -30,6 +31,16 @@ interface AddCompositionArgs {
     compositionAuthor: string;
     tags: string[];
   }
+}
+
+interface UpdateCompositionArgs {
+  compositionId: string;
+  input: {
+    compositionTitle: string;
+    compositionText: string;
+    compositionAuthor: string;
+    tags: string[];
+  };
 }
 
 /* interface AddCommentArgs {
@@ -155,6 +166,38 @@ const resolvers = {
       throw AuthenticationError;
       ('You need to be logged in!');
     },
+    updateComposition: async (_parent: any, { compositionId, input }: UpdateCompositionArgs, context: any) => {
+      if (context.user) {
+        // Find the user and check if the compositionId exists in the user's compositions array
+        const user = await User.findById(context.user._id);
+        if (!user) {
+          throw new AuthenticationError('User not found.');
+        }
+    
+        // Check if the compositionId is in the user's compositions
+        if (!user.compositions.includes(new mongoose.Types.ObjectId(compositionId))) {
+          throw new Error('You are not the author of this composition.');
+        }
+    
+        console.log('Updating composition with ID:', compositionId);
+        console.log('Input data:', input);
+    
+        // Now, safely update the composition using $set
+        const composition = await Composition.findOneAndUpdate(
+          { _id: compositionId },
+          { $set: input },
+          { new: true, runValidators: true }
+        );
+    
+        if (!composition) {
+          throw new Error('Composition not found.');
+        }
+    
+        return composition;
+      }
+    
+      throw new AuthenticationError('You need to be logged in!');
+    },
     /* addComment: async (_parent: any, { compositionId, commentText }: AddCommentArgs, context: any) => {
       if (context.user) {
         return Composition.findOneAndUpdate(
@@ -174,23 +217,36 @@ const resolvers = {
     }, */
     removeComposition: async (_parent: any, { compositionId }: CompositionArgs, context: any) => {
       if (context.user) {
-        const composition = await Composition.findOneAndDelete({
-          _id: compositionId,
-          compositionAuthor: context.user.name,
-        });
-
-        if (!composition) {
-          throw AuthenticationError;
+        // Find the user and check if the compositionId exists in the user's compositions array
+        const user = await User.findById(context.user._id);
+        if (!user) {
+          throw new AuthenticationError('User not found.');
         }
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { compositions: composition._id } }
+    
+        // Check if the compositionId is in the user's compositions
+        if (!user.compositions.includes(new mongoose.Types.ObjectId(compositionId))) {
+          throw new Error('You are not the author of this composition.');
+        }
+    
+        // Now, safely delete the composition
+        const composition = await Composition.findOneAndDelete({
+          _id: compositionId
+        });
+    
+        if (!composition) {
+          throw new Error('Composition not found.');
+        }
+    
+        // Remove the composition from the user's compositions array
+        await User.findByIdAndUpdate(
+          context.user._id,
+          { $pull: { compositions: compositionId } }
         );
-
+    
         return composition;
       }
-      throw AuthenticationError;
+    
+      throw new AuthenticationError('You need to be logged in!');
     },
     followUser: async (_parent: any, { followId }: { followId: string }, context: any) => {
       if (context.user) {
@@ -264,8 +320,6 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-
-
 
     /* removeComment: async (_parent: any, { compositionId, commentId }: RemoveCommentArgs, context: any) => {
       if (context.user) {

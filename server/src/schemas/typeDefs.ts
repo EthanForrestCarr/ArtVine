@@ -68,6 +68,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addComposition(input: CompositionInput!): Composition
     removeComposition(compositionId: ID!): Composition
+    updateComposition(compositionId: ID!, input: CompositionInput!): Composition
     saveToLibrary(compositionId: ID!): User
     removeFromLibrary(compositionId: ID!): User
     followUser(input: FollowInput!): User

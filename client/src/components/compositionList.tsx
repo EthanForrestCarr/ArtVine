@@ -14,6 +14,7 @@ interface CompositionProps {
 }
 
 interface CompositionListProps {
+    compositions?: CompositionProps[];
     filterByAuthor?: boolean; // Determines if we filter by the logged-in user
     filterBySaved?: boolean;  // Determines if we filter by the user's saved compositions
 }
@@ -62,23 +63,68 @@ const CompositionList: React.FC<CompositionListProps> = ({ filterByAuthor, filte
         }
     }, [data, filterByAuthor, filterBySaved]);
 
+    const handleNext = () => {
+        if (!data?.compositions) return;
+        const totalCompositions = data.compositions.length;
+        setStartIndex((prev) => Math.min(prev + compositionsPerPage, totalCompositions - compositionsPerPage));
+    };
+
+    const handlePrevious = () => {
+        if (!data?.compositions) return;
+        setStartIndex((prev) => Math.max(prev - compositionsPerPage, 0));
+    };
+
     if (loading) return <p>Loading compositions...</p>;
     if (error) return <p>Error loading compositions.</p>;
 
     return (
-        <div className="composition-grid mt-3">
-            <div className="grid is-col-min-16">
-            {displayedCompositions.map((composition) => (
-                <Composition
-                    key={composition._id}
-                    compositionId={composition._id}
-                    compositionTitle={composition.compositionTitle}
-                    compositionText={composition.compositionText}
-                    compositionAuthor={composition.compositionAuthor}
-                    createdAt={composition.createdAt}
-                    tags={composition.tags}
-                />
-            ))}
+        <div>
+            <div className="buttons has-addons block mt-4">
+                <button
+                    onClick={handlePrevious}
+                    disabled={startIndex === 0}
+                    className="button is-primary"
+                    >
+                        Previous
+                    </button>
+                <button
+                    onClick={handleNext}
+                    disabled={startIndex + compositionsPerPage >= (data?.compositions?.length || 0)}
+                    className="button is-primary"
+                    >
+                        Next
+                    </button>
+            </div>
+            <div className="composition-grid">
+                <div className="grid is-col-min-16">
+                {displayedCompositions.map((composition) => (
+                    <Composition
+                        key={composition._id}
+                        compositionId={composition._id}
+                        compositionTitle={composition.compositionTitle}
+                        compositionText={composition.compositionText}
+                        compositionAuthor={composition.compositionAuthor}
+                        createdAt={composition.createdAt}
+                        tags={composition.tags}
+                    />
+                ))}
+                </div>
+            </div>
+            <div className="buttons has-addons block mt-4">
+                <button
+                    onClick={handlePrevious}
+                    disabled={startIndex === 0}
+                    className="button is-primary"
+                    >
+                        Previous
+                    </button>
+                <button
+                    onClick={handleNext}
+                    disabled={startIndex + compositionsPerPage >= (data?.compositions?.length || 0)}
+                    className="button is-primary"
+                    >
+                        Next
+                    </button>
             </div>
         </div>
     );

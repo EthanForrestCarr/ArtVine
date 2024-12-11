@@ -33,10 +33,6 @@ export const ADD_COMPOSITION = gql`
       compositionText
       compositionAuthor
       createdAt
-      # comments {
-      #   _id
-      #   commentText
-      # }
     }
   }
 `;
@@ -113,4 +109,17 @@ mutation followUser($followId: ID!) {
     }
   }
 }
+`;
+
+export const UPDATE_COMPOSITION = gql`
+  mutation updateComposition($compositionId: ID!, $input: CompositionInput!) {
+    updateComposition(compositionId: $compositionId, input: $input) {
+      _id
+      compositionTitle
+      compositionText
+      compositionAuthor
+      createdAt
+      tags
+    }
+  }
 `;
