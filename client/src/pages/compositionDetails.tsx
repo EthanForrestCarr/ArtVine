@@ -81,7 +81,7 @@ const CompositionDetails: React.FC = () => {
 
         <div>
             <div className="hero is-small has-background-primary-dark">
-                <div className="hero-body">
+                <div className="hero-body is-flex-direction-column">
                     <h2 className="title has-text-primary">{compositionTitle}</h2>
                     <div className="subtitle">
                         <p>By: {compositionAuthor}</p>
@@ -117,14 +117,14 @@ const CompositionDetails: React.FC = () => {
             </div>
 
             {/* Buttons for saving and navigation */}
-            <div className="buttons has-addons is-centered">
-                <button className="button is-primary" onClick={handleAddToLibrary}>
+            <div className="buttons is-centered">
+                <button className="button is-primary mr-1" onClick={handleAddToLibrary}>
                     Add to Library
                 </button>
-                <button className="button is-light" onClick={handleBackButton}>
+                <button className="button ml-1 mr-1" onClick={handleBackButton}>
                     Go Back
                 </button>
-                <button className="button is-danger" onClick={handleRemoveFromLibrary}>
+                <button className="button is-danger ml-1" onClick={handleRemoveFromLibrary}>
                     Remove from Library
                 </button>
             </div>
