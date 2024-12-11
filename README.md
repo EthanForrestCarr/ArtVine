@@ -23,7 +23,7 @@ The platform is designed with scalability in mind and provides an optimized user
 
 ## Features
 1. Artist Portfolios
-- Upload and manage artwork galleries.
+- Upload and manage artist libraries.
 - Add descriptions and tags to pieces for better discoverability.
 2. Library
 - See something cool? Put it your library so you always know where to find it.
